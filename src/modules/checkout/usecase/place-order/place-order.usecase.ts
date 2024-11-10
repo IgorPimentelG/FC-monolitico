@@ -52,7 +52,13 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
       id: client.id,
       name: client.name,
       email: client.email,
-      address: client.street,
+      document: client.document,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
     });
 
     const order = new Order({

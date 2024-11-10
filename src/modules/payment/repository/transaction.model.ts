@@ -2,6 +2,7 @@ import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 @Table({
   tableName: "transactions",
+  modelName: "transaction",
   timestamps: false,
 })
 export default class TransactionModel extends Model {
