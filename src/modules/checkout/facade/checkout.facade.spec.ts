@@ -23,22 +23,26 @@ describe("CheckoutFacade test", () => {
   });
 
   it("should place an order", async () => {
+    const clientProps = { 
+      id: "1",
+      name: "Client 1",
+      email: "x@x.com",
+      document: "Document 1",
+      street: "Street 1",
+      number: "Number 1",
+      complement: "Complement 1",
+      city: "City 1",
+      state: "State 1",
+      zipCode: "Zip Code 1",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await ClientModel.create(clientProps);
+
     const clientFacadeMock = {
       add: jest.fn(),
-      find: jest.fn().mockResolvedValue(Promise.resolve({ 
-        id: "1",
-        name: "Client 1",
-        email: "x@x.com",
-        document: "Document 1",
-        street: "Street 1",
-        number: "Number 1",
-        complement: "Complement 1",
-        city: "City 1",
-        state: "State 1",
-        zipCode: "Zip Code 1",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-       })),
+      find: jest.fn().mockResolvedValue(Promise.resolve(clientProps)),
     };
     
     const productFacadeMock = {

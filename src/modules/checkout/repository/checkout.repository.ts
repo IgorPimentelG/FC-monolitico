@@ -19,13 +19,15 @@ export default class CheckoutRepository implements CheckoutGateway {
       include: [{ model: ProductModel }, { model: ClientModel }],
     });
 
-    order.products.forEach(async (product) => {
-      ProductModel.update({
-        orderId: order.id.id,
-      }, {
-        where: { id: product.id.id }
-      });
-    });
+    await Promise.all(
+      order.products.map((product) => {
+        ProductModel.update({
+          orderId: order.id.id,
+        }, {
+          where: { id: product.id.id }
+        });
+      })
+    );
   }
   
   async findOrder(id: string): Promise<Order> {
